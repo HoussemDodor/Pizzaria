@@ -8,5 +8,9 @@ namespace Models
 {
     public class Circle : Shape
     {
+        public Circle(int ID, string name) : base(ID, name)
+        {
+
+        }
     }
 }

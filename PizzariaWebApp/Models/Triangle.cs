@@ -8,5 +8,8 @@ namespace Models
 {
     public class Triangle : Shape
     {
+        public Triangle(int ID, string name) : base(ID, name)
+        {
+        }
     }
 }

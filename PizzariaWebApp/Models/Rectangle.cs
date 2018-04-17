@@ -8,5 +8,8 @@ namespace Models
 {
     public class Rectangle : Shape
     {
+        public Rectangle(int ID, string name) : base(ID, name)
+        {
+        }
     }
 }

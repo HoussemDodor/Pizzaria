@@ -16,6 +16,7 @@ namespace Models
         public int sideLength { get; set; }
         public bool standardPizza { get; set; }
 
+
         public Pizza(int id, string name, int doughID, int shapeID, int length, int width, int sideLength, bool standardPizza)
         {
             this.ID = id;
@@ -35,8 +36,13 @@ namespace Models
             this.length = length;
             this.width = width;
             this.sideLength = sideLength;
-            this.standardPizza = standardPizza;
+            this.standardPizza = standardPizza;         
         }
 
+        public int GetSize(int length, int width, int sideLength)
+        {
+            
+            return 1;
+        }
     }
 }
