@@ -16,5 +16,11 @@ namespace Models
             this.ID = ID;
             this.name = name;
         }
+        public Shape()
+        {
+
+        }
+
+        public abstract int GetSize(int length, int width, int sideLength);
     }
 }

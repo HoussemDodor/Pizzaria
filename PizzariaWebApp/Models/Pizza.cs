@@ -15,6 +15,9 @@ namespace Models
         public int width { get; set; }
         public int sideLength { get; set; }
         public bool standardPizza { get; set; }
+        List<Topping> toppingsList { get; set; }
+        Shape shape { get; set; }
+        DoughType doughType { get; set; }
 
 
         public Pizza(int id, string name, int doughID, int shapeID, int length, int width, int sideLength, bool standardPizza)
@@ -41,8 +44,44 @@ namespace Models
 
         public int GetSize(int length, int width, int sideLength)
         {
-            
-            return 1;
+            if (shapeID == 1)
+            {
+                Circle c = new Circle();
+                return c.GetSize(length, width, sideLength);
+            }
+            else if (shapeID == 2)
+            {
+                Rectangle r = new Rectangle();
+                return r.GetSize(length, width, sideLength);
+            }
+            else
+            {
+                Triangle t = new Triangle();
+                return t.GetSize(length, width, sideLength);
+            }
+        }
+
+        public decimal GetPrice()
+        {
+            decimal price= 0;
+            decimal area = (decimal)GetSize(length, width, sideLength);
+
+            // bereken de prijs voor alle toppings
+            foreach (Topping topping in toppingsList)
+            {
+                price += topping.price * area;
+            }
+
+            // prijs berekenen voor de Dough
+            price += area * doughType.price;
+
+            // als het een standaard pizza is geld er een 25% korting
+            if (standardPizza)
+            {
+                price = price * (decimal)0.75;
+            }
+
+            return price;
         }
     }
 }

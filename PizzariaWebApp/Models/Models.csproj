@@ -43,7 +43,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Circle.cs" />
-    <Compile Include="Dough.cs" />
+    <Compile Include="DoughType.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Pizza.cs" />
     <Compile Include="Product.cs" />
