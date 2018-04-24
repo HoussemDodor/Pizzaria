@@ -40,12 +40,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IOrder.cs" />
+    <Compile Include="Interfaces\ITopping.cs" />
+    <Compile Include="Interfaces\ISides.cs" />
+    <Compile Include="Interfaces\IShape.cs" />
+    <Compile Include="Repositories\PizzaRepository.cs" />
+    <Compile Include="Repositories\SidesRepository.cs" />
+    <Compile Include="Repositories\ShapeRepository.cs" />
+    <Compile Include="SQLContext\ShapeSQLContext.cs" />
+    <Compile Include="SQLContext\SidesSQLContext.cs" />
+    <Compile Include="SQLContext\PizzaSQLContext.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="SQLContext\OrderSQLContext.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="SQLContext\CategorySQLContext.cs" />
+    <Compile Include="Interfaces\ICategory.cs" />
+    <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="SQLContext\CustomerSQLContext.cs" />
     <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="Interfaces\ICustomer.cs" />
     <Compile Include="Repositories\DoughTypeRepository.cs" />
     <Compile Include="Interfaces\IPizza.cs" />
     <Compile Include="SQLContext\DoughTypeSQLContext.cs" />
     <Compile Include="Interfaces\IDoughType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ToppingRepository.cs" />
+    <Compile Include="SQLContext\ToppingSQLContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
