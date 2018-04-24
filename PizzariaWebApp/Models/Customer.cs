@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Account
+    public class Customer
     {     
         public int ID { get; set; }
         public string mail { get; set; }
@@ -14,6 +14,6 @@ namespace Models
         public string surName { get; set; }
         public string password { get; set; }
         public bool admin { get; set; }
-        List<Order> orderListByAccount { get; set; }
+        List<Order> OrdersByCustomer { get; set; }
     }
 }

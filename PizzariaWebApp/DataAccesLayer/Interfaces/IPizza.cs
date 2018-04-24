@@ -10,6 +10,9 @@ namespace DataAccesLayer
     internal interface IPizza
     {
         List<Pizza> GetAllPizzas();
-        Pizza GetPizzaByID();
+        Pizza GetPizzaByID(int pizzaID);
+        List<Topping> GetToppingByPizza(int PizzaID);
+        DoughType GetDoughType(int doughtTypeID);
+        Shape GetShape(int shapeID);
     }
 }

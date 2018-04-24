@@ -10,6 +10,6 @@ namespace DataAccesLayer
     internal interface IDoughType
     {
         List<DoughType> GetAllDoughTypes();
-        DoughType GetDoughTypeByID(int ID);
+        DoughType GetDoughTypeByID(int doughtTypeID);
     }
 }

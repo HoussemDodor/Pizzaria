@@ -14,5 +14,6 @@ namespace Models
         public bool halal { get; set; }
         public bool alcohol { get; set; }
         public int categoryID { get; set; }
+        Category category { get; set; }
     }
 }

@@ -14,7 +14,22 @@ namespace DataAccesLayer
             throw new NotImplementedException();
         }
 
-        public Pizza GetPizzaByID()
+        public DoughType GetDoughType(int doughtTypeID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Pizza GetPizzaByID(int pizzaID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Shape GetShape(int shapeID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Topping> GetToppingByPizza(int PizzaID)
         {
             throw new NotImplementedException();
         }
