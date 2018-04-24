@@ -7,15 +7,7 @@ using System.Threading.Tasks;
 namespace Models
 {
     public class Triangle : Shape
-    {
-        public Triangle(int ID, string name) : base(ID, name)
-        {
-        }
-        public Triangle()
-        {
-
-        }
-
+    {       
         public override int GetSize(int length, int width, int sideLength)
         {
             // De totaal van alle lengtes

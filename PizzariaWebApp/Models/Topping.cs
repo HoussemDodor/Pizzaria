@@ -14,23 +14,5 @@ namespace Models
         public decimal buyInPrice { get; set; }
         public bool vegan { get; set; }
         public bool halal { get; set; }
-
-        public Topping(string name, decimal price, decimal buyInPrice, bool vegan, bool halal)
-        {
-            this.name = name;
-            this.price = price;
-            this.buyInPrice = buyInPrice;
-            this.vegan = vegan;
-            this.halal = halal;
-        }
-        public Topping(int ID, string name, decimal price, decimal buyInPrice, bool vegan, bool halal)
-        {
-            this.ID = ID;
-            this.name = name;
-            this.price = price;
-            this.buyInPrice = buyInPrice;
-            this.vegan = vegan;
-            this.halal = halal;
-        }
     }
 }

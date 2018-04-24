@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer
 {
-    internal class OrderSQLContext
+    internal class OrderSQLContext : IOrder
     {
     }
 }

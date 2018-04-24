@@ -57,13 +57,13 @@ namespace DataAccesLayer
 
         private DoughType CreateDoughTypeFromReader(SqlDataReader reader)
         {
-            return new DoughType
-                (
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Name"]),
-                    Convert.ToDecimal(reader["Price"]),
-                    Convert.ToDecimal(reader["BuyInPrice"])
-                );
+            return new DoughType()
+            {
+                ID = Convert.ToInt32(reader["ID"]),
+                name = Convert.ToString(reader["Name"]),
+                price = Convert.ToDecimal(reader["Price"]),
+                buyInPrice = Convert.ToDecimal(reader["BuyInPrice"])
+            };
         }
     }
 }

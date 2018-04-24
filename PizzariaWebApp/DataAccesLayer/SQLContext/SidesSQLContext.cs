@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer
 {
-    internal class SidesSQLContext
+    internal class SidesSQLContext : ISides
     {
     }
 }

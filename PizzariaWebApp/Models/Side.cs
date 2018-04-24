@@ -14,23 +14,5 @@ namespace Models
         public bool halal { get; set; }
         public bool alcohol { get; set; }
         public int categoryID { get; set; }
-
-        public Side(int ID, decimal buyInPrice, bool vegan, bool halal, bool alcohol, int categoryID)
-        {
-            this.ID = ID;
-            this.buyInPrice = buyInPrice;
-            this.vegan = vegan;
-            this.halal = halal;
-            this.alcohol = alcohol;
-            this.categoryID = categoryID;
-        }
-        public Side(decimal buyInPrice, bool vegan, bool halal, bool alcohol, int categoryID)
-        {
-            this.buyInPrice = buyInPrice;
-            this.vegan = vegan;
-            this.halal = halal;
-            this.alcohol = alcohol;
-            this.categoryID = categoryID;
-        }
     }
 }

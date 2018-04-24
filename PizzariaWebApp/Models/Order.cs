@@ -19,54 +19,5 @@ namespace Models
         public bool takeAway { get; set; }
         public bool delivered { get; set; }
         List<Product> productsByThisOrder { get; set; }
-
-        public Order(int ID, int accountID, string deliveryAdress, string houseNumber, string houseNumberAddition, string city, DateTime dateOrderPlaced, string customerComment, bool takeAway, bool delivered)
-        {
-            this.ID = ID;
-            this.accountID = accountID;
-            this.deliveryAdress = deliveryAdress;
-            this.houseNumber = houseNumber;
-            this.houseNumberAddition = houseNumberAddition;
-            this.city = city;
-            this.dateOrderPlaced = dateOrderPlaced;
-            this.customerComment = customerComment;
-            this.takeAway = takeAway;
-            this.delivered = delivered;
-        }
-        public Order(int ID, int accountID, string deliveryAdress, string houseNumber, string city, DateTime dateOrderPlaced, string customerComment, bool takeAway, bool delivered)
-        {
-            this.ID = ID;
-            this.accountID = accountID;
-            this.deliveryAdress = deliveryAdress;
-            this.houseNumber = houseNumber;
-            this.city = city;
-            this.dateOrderPlaced = dateOrderPlaced;
-            this.customerComment = customerComment;
-            this.takeAway = takeAway;
-            this.delivered = delivered;
-        }
-        public Order(int accountID, string deliveryAdress, string houseNumber, string houseNumberAddition, string city, DateTime dateOrderPlaced, string customerComment, bool takeAway, bool delivered)
-        {
-            this.accountID = accountID;
-            this.deliveryAdress = deliveryAdress;
-            this.houseNumber = houseNumber;
-            this.houseNumberAddition = houseNumberAddition;
-            this.city = city;
-            this.dateOrderPlaced = dateOrderPlaced;
-            this.customerComment = customerComment;
-            this.takeAway = takeAway;
-            this.delivered = delivered;
-        }
-        public Order(int accountID, string deliveryAdress, string houseNumber, string city, DateTime dateOrderPlaced, string customerComment, bool takeAway, bool delivered)
-        {
-            this.accountID = accountID;
-            this.deliveryAdress = deliveryAdress;
-            this.houseNumber = houseNumber;
-            this.city = city;
-            this.dateOrderPlaced = dateOrderPlaced;
-            this.customerComment = customerComment;
-            this.takeAway = takeAway;
-            this.delivered = delivered;
-        }
     }
 }

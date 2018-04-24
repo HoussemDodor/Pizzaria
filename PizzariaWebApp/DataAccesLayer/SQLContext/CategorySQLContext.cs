@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccesLayer
 {
-    internal class CategorySQLContext
+    internal class CategorySQLContext : ICategory
     {
     }
 }

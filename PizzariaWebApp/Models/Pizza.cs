@@ -19,29 +19,6 @@ namespace Models
         Shape shape { get; set; }
         DoughType doughType { get; set; }
 
-
-        public Pizza(int id, string name, int doughID, int shapeID, int length, int width, int sideLength, bool standardPizza)
-        {
-            this.ID = id;
-            this.name = name;
-            this.doughID = doughID;
-            this.shapeID = shapeID;
-            this.length = length;
-            this.width = width;
-            this.sideLength = sideLength;
-            this.standardPizza = standardPizza;
-        }
-        public Pizza(string name, int doughID, int shapeID, int length, int width, int sideLength, bool standardPizza)
-        {
-            this.name = name;
-            this.doughID = doughID;
-            this.shapeID = shapeID;
-            this.length = length;
-            this.width = width;
-            this.sideLength = sideLength;
-            this.standardPizza = standardPizza;         
-        }
-
         public int GetSize(int length, int width, int sideLength)
         {
             if (shapeID == 1)

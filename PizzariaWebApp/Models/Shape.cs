@@ -11,16 +11,6 @@ namespace Models
         public int ID { get; set; }
         public string name { get; set; }
 
-        public Shape(int ID, string name)
-        {
-            this.ID = ID;
-            this.name = name;
-        }
-        public Shape()
-        {
-
-        }
-
         public abstract int GetSize(int length, int width, int sideLength);
     }
 }
