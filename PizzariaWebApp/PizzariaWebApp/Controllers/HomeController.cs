@@ -8,6 +8,7 @@ namespace PizzariaWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -23,6 +24,13 @@ namespace PizzariaWebApp.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult MyProfile()
+        {
+            ViewBag.Message = "Your profile page";
 
             return View();
         }
