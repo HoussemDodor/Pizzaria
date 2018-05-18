@@ -6,9 +6,17 @@
 <br/><br />
 <h2> Welkom @Model.name @Model.surName</h2>
 <br /><br />
-@Html.ActionLink("Mijn profiel", "CustomerDetails", "Home", new { id = Model.ID }, new { @class = "btn btn-primary" })
-<br /><br />
-@Html.ActionLink("Nieuwe bestelling", "Index", "Order", null, new { @class = "btn btn-primary" })
-<br /><br />
-@Html.ActionLink("Al mijn bestellingen", "OrderListByCustomer", "Order", null, new { @class = "btn btn-primary" })
-<br /><br />
+
+
+<a href="/Home/CustomerDetails" class="btn btn-primary">
+    <i class="fa fa-user fa-5x" style="margin-right: 5px;"></i>
+    <br />Mijn profiel<br/>
+</a>
+<a href="/Order/Index" class="btn btn-primary">
+    <i class="fa fa-plus fa-5x" style="margin-right: 5px;"></i>
+    <br />Nieuwe bestelling
+</a>
+<a href="/Home/OrderListByCustomer" class="btn btn-primary">
+    <i class="fa fa-book fa-5x" style="margin-right: 5px;"></i>
+    <br />Mijn vorige bestellingen<br />
+</a>
