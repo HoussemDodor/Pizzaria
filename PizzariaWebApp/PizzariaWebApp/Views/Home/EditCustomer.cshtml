@@ -57,9 +57,11 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Terug naar hoofdscherm", "Index", "Home", new { id = Model.ID }, new { @class = "btn btn-primary" } )
-</div>
+<p>
+    <a href="/Home/CustomerDetails" class="btn btn-primary">
+        <i class="fa fa-arrow-left fa-5x" style="margin-right: 5px;"></i>
+    </a>
+</p>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

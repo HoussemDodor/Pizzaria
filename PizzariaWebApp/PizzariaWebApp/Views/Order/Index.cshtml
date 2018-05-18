@@ -7,11 +7,24 @@
 <br /><br />
 <h2>Nieuwe Bestelling</h2>
 <br /><br />
-@Html.ActionLink("Eigen pizza maken", "NewPizza", "Order", null, new { @class = "btn btn-primary" })
+
+<a href="/Order/NewPizza" class="btn btn-primary">
+    <i class="fa fa-plus fa-5x" style="margin-right: 5px;"></i>
+    <br />Nieuwe pizza
+</a>
+<a href="/Order/StandardPizzaList" class="btn btn-primary">
+    <i class="fa fa-code-fork fa-5x" style="margin-right: 5px;"></i>
+    <br />Standaard pizza's
+</a>
+<a href="/Order/SidesList" class="btn btn-primary">
+    <i class="fa fa-shopping-basket fa-5x" style="margin-right: 5px;"></i>
+    <br />Dranken & Salade's
+</a>
+
+
 <br /><br />
-@Html.ActionLink("Standaardpizza kiezen", "StandardPizzaList", "Order", null, new { @class = "btn btn-primary" })
-<br /><br />
-@Html.ActionLink("Dranken & Salades", "SidesList", "Order", null , new { @class = "btn btn-primary" })
-<br /><br />
-@Html.ActionLink("Bestelling plaatsen", "OrderPlaced", "Order", null, new { @class = "btn btn-primary" })
+<a href="/Order/OrderPlaced" class="btn btn-primary">
+    <i class="fa fa-check fa-5x" style="margin-right: 5px;"></i>
+    <br />Bestelling plaatsen
+</a>
 <br /><br />
