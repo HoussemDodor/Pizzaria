@@ -61,6 +61,8 @@ namespace PizzariaWebApp.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            Request.Cookies.Clear();
+            FormsAuthentication.SignOut();
             return View();
         }
 
@@ -84,7 +86,6 @@ namespace PizzariaWebApp.Controllers
                     var MyCookie = new HttpCookie("UserCookie");
                     MyCookie.Values.Add("User_ID", result.ID.ToString());
                     Response.Cookies.Add(MyCookie);
-
                     return RedirectToAction("Index", "Home");
                 case SignInStatus.Failure:
                 default:
@@ -394,7 +395,9 @@ namespace PizzariaWebApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            FormsAuthentication.SignOut();
+            Request.Cookies.Clear();
+            return RedirectToAction("Login", "Account");
         }
 
         //
