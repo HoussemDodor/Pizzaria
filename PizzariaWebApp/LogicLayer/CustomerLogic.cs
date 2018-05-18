@@ -36,5 +36,10 @@ namespace LogicLayer
         {
             return repo.Register(name, surname, email, password, admin);
         }
+
+        public void UpdateCustomer(Customer c)
+        {
+            repo.UpdateCustomer(c.ID, c.name, c.surName, c.mail);
+        }
     }
 }

@@ -35,5 +35,10 @@ namespace DataAccesLayer
         {
             return context.Register(name, surname, email, password, admin);
         }
+
+        public void UpdateCustomer(int id, string name, string surname , string email)
+        {
+            context.UpdateCustomer(id, name, surname, email);
+        }
     }
 }

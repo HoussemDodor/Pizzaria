@@ -20,9 +20,24 @@ namespace PizzariaWebApp.Controllers
             return View(customer());
         }
 
+        [HttpGet]
         public ActionResult EditCustomer()
         {
             return View(customer());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCustomer(Customer c)
+        {
+            if (ModelState.IsValid)
+            {
+                customerlogic.UpdateCustomer(c);
+                return RedirectToAction("CustomerDetails");
+            }
+
+            // Code hoort hier niet te komen, maar als die dat doet reload hij de page
+            return View();
         }
 
         public ActionResult OrderListByCustomer()

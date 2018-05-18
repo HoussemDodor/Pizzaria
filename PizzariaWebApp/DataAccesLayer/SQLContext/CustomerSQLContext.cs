@@ -98,6 +98,22 @@ namespace DataAccesLayer
             }
         }
 
+        public void UpdateCustomer(int id, string name, string surname, string email)
+        {
+            using (SqlConnection conn = dbconn.Connect)
+            {
+                SqlCommand cmd = new SqlCommand("UpdateCustomer", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Surname", surname);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+
         private Customer CreateCustomerFromReader(SqlDataReader reader)
         {
             return new Customer()

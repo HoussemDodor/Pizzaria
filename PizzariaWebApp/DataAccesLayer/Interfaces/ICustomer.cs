@@ -13,5 +13,6 @@ namespace DataAccesLayer
         Customer Login(string email, string password);
         List<Customer> GetAllCustomers();
         Customer GetCustomerByID(int customerID);
+        void UpdateCustomer(int id, string name, string surname, string email);
     }
 }
