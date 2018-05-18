@@ -1,14 +1,13 @@
 ﻿@model Models.Customer
 
 @{
-    ViewBag.Title = "MyProfile";
+    ViewBag.Title = "Mijn profiel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MyProfile</h2>
+<h2>Mijn Profiel</h2>
 
 <div>
-    <h4>@Model.name @Model.surName</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -47,6 +46,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Bewerken", "EditCustomer", "Home", new { id = Model.ID }, new { @class = "btn btn-primary" })  | 
+    @Html.ActionLink("Terug naar hoofdscherm", "Index", "Home", new { id = Model.ID }, new { @class = "btn btn-primary" })
 </p>

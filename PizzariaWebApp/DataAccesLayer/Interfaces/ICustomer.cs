@@ -9,8 +9,8 @@ namespace DataAccesLayer
 {
     internal interface ICustomer
     {
-        bool Register(string name, string surname, string email, string password, bool admin);
-        bool Login(string email, string password);
+        Customer Register(string name, string surname, string email, string password, bool admin);
+        Customer Login(string email, string password);
         List<Customer> GetAllCustomers();
         Customer GetCustomerByID(int customerID);
     }

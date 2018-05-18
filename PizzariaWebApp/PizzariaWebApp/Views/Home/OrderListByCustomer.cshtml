@@ -1,0 +1,71 @@
+﻿@model Models.Customer
+
+@{
+    ViewBag.Title = "Bestelling Lijst";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().deliveryAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().houseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().houseNumberAddition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().dateOrderPlaced)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().customerComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().takeAway)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrdersByCustomer.First().delivered)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.OrdersByCustomer) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.deliveryAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.houseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.houseNumberAddition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateOrderPlaced)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.takeAway)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.delivered)
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Terug naar home pagina", "Index", "Home", new { id = Model.ID }, new { @class = "btn btn-default" })
+</p>

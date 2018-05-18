@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Nieuwe Bestelling";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br />
+<h2>Nieuwe Bestelling</h2>
+<br /><br />
+@Html.ActionLink("Eigen pizza maken", "NewPizza", "Order", null, new { @class = "btn btn-primary" })
+<br /><br />
+@Html.ActionLink("Standaardpizza kiezen", "StandardPizzaList", "Order", null, new { @class = "btn btn-primary" })
+<br /><br />
+@Html.ActionLink("Dranken & Salades", "SidesList", "Order", null , new { @class = "btn btn-primary" })
+<br /><br />
+@Html.ActionLink("Bestelling plaatsen", "OrderPlaced", "Order", null, new { @class = "btn btn-primary" })
+<br /><br />

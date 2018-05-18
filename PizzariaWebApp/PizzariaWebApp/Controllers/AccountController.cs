@@ -9,12 +9,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PizzariaWebApp.Models;
+using LogicLayer;
+using System.Web.Security;
 
 namespace PizzariaWebApp.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private CustomerLogic customerlogic = new CustomerLogic();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -66,24 +69,23 @@ namespace PizzariaWebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {
+        public ActionResult Login(LoginViewModel model, string returnUrl)
+        {          
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var result = customerlogic.Login(model.Email, model.Password);
+            switch ((result != null) ? SignInStatus.Success : SignInStatus.Failure)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    FormsAuthentication.SetAuthCookie(result.mail, false);
+                    var MyCookie = new HttpCookie("UserCookie");
+                    MyCookie.Values.Add("User_ID", result.ID.ToString());
+                    Response.Cookies.Add(MyCookie);
+
+                    return RedirectToAction("Index", "Home");
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");

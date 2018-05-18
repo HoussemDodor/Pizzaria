@@ -4,11 +4,11 @@
     ViewBag.Title = "Home Pagina";
 }
 <br/><br />
-<h2> Welkom CustomerName</h2>
+<h2> Welkom @Model.name @Model.surName</h2>
 <br /><br />
-@Html.ActionLink("Mijn profiel", "CustomerDetails", "HomeController", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Mijn profiel", "CustomerDetails", "Home", new { id = Model.ID }, new { @class = "btn btn-primary" })
 <br /><br />
-@Html.ActionLink("Nieuwe bestelling", "NewOrder", "OrderController", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Nieuwe bestelling", "Index", "Order", null, new { @class = "btn btn-primary" })
 <br /><br />
-@Html.ActionLink("Al mijn bestellingen", "CustomerDetails", "OrderController", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Al mijn bestellingen", "OrderListByCustomer", "Order", null, new { @class = "btn btn-primary" })
 <br /><br />

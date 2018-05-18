@@ -3,37 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccesLayer;
 using Models;
 
-namespace DataAccesLayer
+namespace LogicLayer
 {
-    public class CustomerRepository
+    public class CustomerLogic
     {
-        private ICustomer context;
+        private CustomerRepository repo;
 
-        public CustomerRepository()
+        public CustomerLogic()
         {
-            context = new CustomerSQLContext();
-        }
+            repo = new CustomerRepository();
+        } 
 
         public List<Customer> GetAllCustomers()
         {
-            return context.GetAllCustomers();
+            return repo.GetAllCustomers();
         }
 
         public Customer GetCustomerByID(int customerID)
         {
-            return context.GetCustomerByID(customerID);
+            return repo.GetCustomerByID(customerID);
         }
 
         public Customer Login(string email, string password)
         {
-            return context.Login(email, password);
+            return repo.Login(email, password);
         }
 
         public Customer Register(string name, string surname, string email, string password, bool admin)
         {
-            return context.Register(name, surname, email, password, admin);
+            return repo.Register(name, surname, email, password, admin);
         }
     }
 }

@@ -3,20 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
     public class Pizza : Product
     {
+        [ScaffoldColumn(false)]
         public int ID { get; set; }
+        [ScaffoldColumn(false)]
         public int doughID { get; set; }
+        [ScaffoldColumn(false)]
         public int shapeID { get; set; }
+        [Display(Name = "Lengte")]
         public int length { get; set; }
+        [Display(Name = "Breedte")]
         public int width { get; set; }
+        [Display(Name = "Lengte van 3de zijde")]
         public int sideLength { get; set; }
+        [ScaffoldColumn(false)]
         public bool standardPizza { get; set; }
+        [Display(Name = "Topping")]
         List<Topping> toppingsList { get; set; }
+        [Display(Name = "Vorm")]
         Shape shape { get; set; }
+        [Display(Name = "Deeg")]
         DoughType doughType { get; set; }
 
         public int GetSize(int length, int width, int sideLength)
