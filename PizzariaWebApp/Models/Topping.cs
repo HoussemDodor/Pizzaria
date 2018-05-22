@@ -14,5 +14,10 @@ namespace Models
         public decimal buyInPrice { get; set; }
         public bool vegan { get; set; }
         public bool halal { get; set; }
+
+        public override string ToString()
+        {
+            return $"{name}";
+        }
     }
 }

@@ -12,5 +12,10 @@ namespace Models
         public string name { get; set; }
         public decimal price { get; set; }
         public decimal buyInPrice { get; set; }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

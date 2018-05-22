@@ -12,5 +12,7 @@ namespace Models
         public string name { get; set; }
 
         public abstract int GetSize(int length, int width, int sideLength);
+
+        public abstract override string ToString();
     }
 }

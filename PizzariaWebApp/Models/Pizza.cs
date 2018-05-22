@@ -71,5 +71,16 @@ namespace Models
 
             return price;
         }
+
+        public override string ToString()
+        {
+            string topping = "";
+
+            foreach(var x in toppingsList)
+            { 
+                topping += $" {x.name}";
+            }
+            return $"{shape.name} {doughType.name} {topping}";
+        }
     }
 }

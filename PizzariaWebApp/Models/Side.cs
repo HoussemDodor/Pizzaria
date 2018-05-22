@@ -15,5 +15,10 @@ namespace Models
         public bool alcohol { get; set; }
         public int categoryID { get; set; }
         Category category { get; set; }
+
+        public override string ToString()
+        {
+            return $"{name}";
+        }
     }
 }

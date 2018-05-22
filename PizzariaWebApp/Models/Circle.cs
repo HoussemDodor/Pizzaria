@@ -13,5 +13,9 @@ namespace Models
             int area = Convert.ToInt32(Math.PI * Math.Pow(Convert.ToDouble(length), 2));
             return area;
         }
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

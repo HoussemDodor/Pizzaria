@@ -18,6 +18,16 @@ namespace Models
         public string customerComment { get; set; }
         public bool takeAway { get; set; }
         public bool delivered { get; set; }
-        List<Product> productsByThisOrder { get; set; }
+        List<Product> productsInThisOrder { get; set; }
+
+        public override string ToString()
+        {
+            string i = "";
+            foreach(var x in productsInThisOrder)
+            {
+                i += " " + x.ToString();
+            }
+            return i;
+        }
     }
 }

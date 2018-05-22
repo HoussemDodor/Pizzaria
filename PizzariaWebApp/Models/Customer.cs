@@ -21,5 +21,10 @@ namespace Models
         [ScaffoldColumn(false)]
         public bool admin { get; set; }
         public List<Order> OrdersByCustomer { get; set; }
+
+        public override string ToString()
+        {
+            return name + surName;
+        }
     }
 }

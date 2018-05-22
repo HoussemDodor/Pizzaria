@@ -28,5 +28,9 @@ namespace Models
             int area = Convert.ToInt32(Math.Sqrt(Convert.ToDouble(sum)));
             return area;
         }
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

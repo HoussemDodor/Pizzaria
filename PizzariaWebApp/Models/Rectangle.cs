@@ -13,5 +13,10 @@ namespace Models
             int area = length * width;
             return area;
         }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }
