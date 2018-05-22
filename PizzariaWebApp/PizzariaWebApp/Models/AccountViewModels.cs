@@ -67,13 +67,23 @@ namespace PizzariaWebApp.Models
         public string Email { get; set; }
 
         [Required]
+        [EmailAddress]
+        [Display(Name = "Naam")]
+        public string Name { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Achternaam")]
+        public string Achternaam { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Bevestig wachtwoord")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
