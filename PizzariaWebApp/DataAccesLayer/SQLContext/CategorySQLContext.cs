@@ -55,7 +55,7 @@ namespace DataAccesLayer
             }
         }
 
-        public Category CreateCategoryFromReader(SqlDataReader reader)
+        private Category CreateCategoryFromReader(SqlDataReader reader)
         {
             return new Category()
             {
