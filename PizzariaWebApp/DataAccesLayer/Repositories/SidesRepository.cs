@@ -21,9 +21,9 @@ namespace DataAccesLayer
             return context.GetAllSides();
         }
 
-        public Category GetCategoryBySide(int categoryID)
+        public List<Side> GetSideByCategory(int categoryID)
         {
-            return context.GetCategoryBySide(categoryID);
+            return context.GetSideByCategory(categoryID);
         }
 
         public Side GetSideByID(int sideID)

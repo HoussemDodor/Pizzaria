@@ -11,6 +11,6 @@ namespace DataAccesLayer
     {
         List<Side> GetAllSides();
         Side GetSideByID(int sideID);
-        Category GetCategoryBySide(int categoryID);
+        List<Side> GetSideByCategory(int categoryID);
     }
 }
