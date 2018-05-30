@@ -80,18 +80,19 @@ namespace PizzariaWebApp.Controllers
             }
 
             var result = customerlogic.Login(model.Email, model.Password);
-            switch ((result != null) ? SignInStatus.Success : SignInStatus.Failure)
+
+            if (result != null)
             {
-                case SignInStatus.Success:
-                    FormsAuthentication.SetAuthCookie(result.mail, false);
-                    var MyCookie = new HttpCookie("UserCookie");
-                    MyCookie.Values.Add("User_ID", result.ID.ToString());
-                    Response.Cookies.Add(MyCookie);
-                    return RedirectToAction("Index", "Home");
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                FormsAuthentication.SetAuthCookie(result.mail, false);
+                var MyCookie = new HttpCookie("UserCookie");
+                MyCookie.Values.Add("User_ID", result.ID.ToString());
+                Response.Cookies.Add(MyCookie);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
             }
         }
 
