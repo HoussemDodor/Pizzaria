@@ -14,5 +14,6 @@ namespace DataAccesLayer
         List<Customer> GetAllCustomers();
         Customer GetCustomerByID(int customerID);
         void UpdateCustomer(int id, string name, string surname, string email);
+        bool CheckIfEmailIsTaken(string email);
     }
 }

@@ -26,7 +26,7 @@ namespace PizzariaWebApp.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,9 +38,9 @@ namespace PizzariaWebApp.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -73,7 +73,7 @@ namespace PizzariaWebApp.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
-        {          
+        {
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -125,7 +125,7 @@ namespace PizzariaWebApp.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -152,12 +152,22 @@ namespace PizzariaWebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                customerlogic.Register(model.Name, model.Achternaam, model.Email, model.Password, false);
-                return RedirectToAction("Login", "Account");
+                //Check of de email bezet is
+                if (!customerlogic.CheckIfEmailIsTaken(model.Email))
+                {
+                    customerlogic.Register(model.Name, model.Achternaam, model.Email, model.Password, false);
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    // Als die bezet is voeg je een error toe
+                    ModelState.AddModelError("Email", "Email Bezet");
+                    return View(model);
+                }
             }
 
             // If we got this far, something failed, redisplay form

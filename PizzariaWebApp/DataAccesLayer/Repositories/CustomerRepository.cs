@@ -40,5 +40,10 @@ namespace DataAccesLayer
         {
             context.UpdateCustomer(id, name, surname, email);
         }
+
+        public bool CheckIfEmailIsTaken(string email)
+        {
+            return context.CheckIfEmailIsTaken(email);
+        }
     }
 }

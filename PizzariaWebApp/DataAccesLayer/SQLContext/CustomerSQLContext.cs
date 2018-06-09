@@ -114,6 +114,27 @@ namespace DataAccesLayer
             }
         }
 
+        public bool CheckIfEmailIsTaken(string email)
+        {
+            string query = "SELECT Email FROM Customer WHERE Email = @email;";
+            bool emailTaken = false;
+            using (SqlConnection conn = dbconn.Connect)
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@email", email);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        emailTaken = true;
+                    }
+                }
+                conn.Close();
+            }
+            return emailTaken;
+        }
+
         private Customer CreateCustomerFromReader(SqlDataReader reader)
         {
             return new Customer()

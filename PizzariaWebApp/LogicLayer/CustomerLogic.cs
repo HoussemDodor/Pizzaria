@@ -41,5 +41,10 @@ namespace LogicLayer
         {
             repo.UpdateCustomer(c.ID, c.name, c.surName, c.mail);
         }
+
+        public bool CheckIfEmailIsTaken(string email)
+        {
+            return repo.CheckIfEmailIsTaken(email);
+        }
     }
 }
