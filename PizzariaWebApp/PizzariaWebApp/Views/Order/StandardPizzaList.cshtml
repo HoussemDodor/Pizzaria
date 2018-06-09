@@ -19,6 +19,8 @@
 
     @foreach (var item in Model)
     {
+        decimal price = item.Price / 100;
+        price = Math.Round(price, 2);
         if (item.StandardPizza == true)
         {
             <tr>
@@ -26,9 +28,9 @@
                     @item.Name
                 </td>
                 <td>
-                    @item.Price
+                    €@price
                 </td>
-            </tr>           
+            </tr>
         }
     }
 </table>

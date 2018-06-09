@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LogicLayer;
+using Models;
 
 namespace PizzariaWebApp.Controllers
 {
     public class OrderController : Controller
-    {      
+    {
+        PizzaLogic pizzaLogic = new PizzaLogic();
         public ActionResult Index()
         {
             return View();
@@ -20,8 +23,7 @@ namespace PizzariaWebApp.Controllers
 
         public ActionResult StandardPizzaList()
         {
-
-            return View();
+            return View(pizzaLogic.GetAllPizzas());
         }
 
         public ActionResult SidesList()

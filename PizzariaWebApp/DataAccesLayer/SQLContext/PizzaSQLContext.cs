@@ -78,14 +78,14 @@ namespace DataAccesLayer
             return new Pizza()
             {
                 ID = Convert.ToInt32(reader["ID"]),
-                DoughID = Convert.ToInt32(reader["DoughID"]),
+                DoughID = Convert.ToInt32(reader["DoughTypeID"]),
                 ShapeID = Convert.ToInt32(reader["ShapeID"]),
                 Length = Convert.ToInt32(reader["Length"]),
                 Width = Convert.ToInt32(reader["Width"]),
                 SideLength = Convert.ToInt32(reader["SideLength"]),
                 StandardPizza = Convert.ToBoolean(reader["StandardPizza"]),
                 Shape = GetShape(Convert.ToInt32(reader["ShapeID"])),
-                DoughType = GetDoughType(Convert.ToInt32(reader["DoughID"])),
+                DoughType = GetDoughType(Convert.ToInt32(reader["DoughTypeID"])),
                 ToppingsList = GetToppingByPizza(Convert.ToInt32(reader["ID"]))
             };
         }

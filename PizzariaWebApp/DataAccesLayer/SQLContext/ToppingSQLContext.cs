@@ -57,19 +57,31 @@ namespace DataAccesLayer
 
         public List<Topping> GetToppingsByPizza(int pizzaID)
         {
+            /*
+             * Deze stored procedure opslaan op andere pc
+             * 
+                CREATE PROCEDURE dbo.GetToppingsByPizza 
+                @pizzaID int
+                AS
+                SELECT Topping.* FROM Topping 
+                INNER JOIN PizzaTopping ON Topping.ID = PizzaTopping.ToppingID
+                INNER JOIN Pizza ON PizzaTopping.PizzaID = Pizza.ID
+                WHERE Pizza.ID = @pizzaID
+                GO
+
+             */
+
             List<Topping> toppings = new List<Topping>();
-            string query = "SELECT * FROM Topping WHERE PizzaID = @id";
             using (SqlConnection conn = dbconn.Connect)
             {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                SqlCommand cmd = new SqlCommand("GetToppingsByPizza", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@pizzaID", pizzaID);
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", pizzaID);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            toppings.Add(CreateToppingFromReader(reader));
-                        }
+                        toppings.Add(CreateToppingFromReader(reader));
                     }
                 }
                 conn.Close();
