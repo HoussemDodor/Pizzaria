@@ -16,7 +16,7 @@ namespace DataAccesLayer
         public List<Topping> GetAllToppings()
         {
             List<Topping> toppings = new List<Topping>();
-            string query = "SELECT * FROM Toppings";
+            string query = "SELECT * FROM Topping";
             using (SqlConnection conn = dbconn.Connect)
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -36,7 +36,7 @@ namespace DataAccesLayer
 
         public Topping GetToppingByID(int toppingID)
         {
-            string query = "SELECT * FROM Category WHERE ID = @id";
+            string query = "SELECT * FROM Topping WHERE ID = @id";
             using (SqlConnection conn = dbconn.Connect)
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -52,6 +52,28 @@ namespace DataAccesLayer
                 }
                 conn.Close();
                 return topping;
+            }
+        }
+
+        public List<Topping> GetToppingsByPizza(int pizzaID)
+        {
+            List<Topping> toppings = new List<Topping>();
+            string query = "SELECT * FROM Topping WHERE PizzaID = @id";
+            using (SqlConnection conn = dbconn.Connect)
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", pizzaID);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            toppings.Add(CreateToppingFromReader(reader));
+                        }
+                    }
+                }
+                conn.Close();
+                return toppings;
             }
         }
 

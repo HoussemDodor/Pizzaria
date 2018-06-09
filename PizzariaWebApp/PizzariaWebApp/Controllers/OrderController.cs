@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace PizzariaWebApp.Controllers
 {
     public class OrderController : Controller
-    {
+    {      
         public ActionResult Index()
         {
             return View();
@@ -20,6 +20,7 @@ namespace PizzariaWebApp.Controllers
 
         public ActionResult StandardPizzaList()
         {
+
             return View();
         }
 

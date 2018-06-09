@@ -10,6 +10,8 @@ namespace DataAccesLayer
     internal interface ITopping
     {
         List<Topping> GetAllToppings();
+        List<Topping> GetToppingsByPizza(int pizzaID);
         Topping GetToppingByID(int toppingID);
+
     }
 }

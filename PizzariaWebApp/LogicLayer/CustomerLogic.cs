@@ -15,36 +15,18 @@ namespace LogicLayer
         public CustomerLogic()
         {
             repo = new CustomerRepository();
-        } 
-
-        public List<Customer> GetAllCustomers()
-        {
-            return repo.GetAllCustomers();
         }
 
-        public Customer GetCustomerByID(int customerID)
-        {
-            return repo.GetCustomerByID(customerID);
-        }
+        public List<Customer> GetAllCustomers() => repo.GetAllCustomers();
 
-        public Customer Login(string email, string password)
-        {
-            return repo.Login(email, password);
-        }
+        public Customer GetCustomerByID(int customerID) => repo.GetCustomerByID(customerID);
 
-        public Customer Register(string name, string surname, string email, string password, bool admin)
-        {
-            return repo.Register(name, surname, email, password, admin);
-        }
+        public Customer Login(string email, string password) => repo.Login(email, password);
 
-        public void UpdateCustomer(Customer c)
-        {
-            repo.UpdateCustomer(c.ID, c.name, c.surName, c.mail);
-        }
+        public Customer Register(string name, string surname, string email, string password, bool admin) => repo.Register(name, surname, email, password, admin);
 
-        public bool CheckIfEmailIsTaken(string email)
-        {
-            return repo.CheckIfEmailIsTaken(email);
-        }
+        public void UpdateCustomer(Customer c) => repo.UpdateCustomer(c.ID, c.name, c.surName, c.mail);
+
+        public bool CheckIfEmailIsTaken(string email) => repo.CheckIfEmailIsTaken(email);
     }
 }

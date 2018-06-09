@@ -12,18 +12,18 @@ namespace PizzariaWebApp.Controllers
 
         public ActionResult Index()
         {
-            return View(customer());
+            return View(GetCustomer());
         }
 
         public ActionResult CustomerDetails()
         {
-            return View(customer());
+            return View(GetCustomer());
         }
 
         [HttpGet]
         public ActionResult EditCustomer()
         {
-            return View(customer());
+            return View(GetCustomer());
         }
 
         [HttpPost]
@@ -32,17 +32,25 @@ namespace PizzariaWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                customerlogic.UpdateCustomer(c);
-                return RedirectToAction("CustomerDetails");
+                if (!customerlogic.CheckIfEmailIsTaken(c.mail))
+                {
+                    customerlogic.UpdateCustomer(c);
+                    return RedirectToAction("CustomerDetails");
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "Deze Email is al bezet");
+                    return View(c);
+                }
             }
 
             // Code hoort hier niet te komen, maar als die dat doet reload hij de page
-            return View();
+            return View(c);
         }
 
         public ActionResult OrderListByCustomer()
         {           
-            return View(customer());
+            return View(GetCustomer());
         }
 
         [AllowAnonymous]
@@ -57,7 +65,7 @@ namespace PizzariaWebApp.Controllers
             return View();
         }
 
-        private Customer customer()
+        private Customer GetCustomer()
         {
             int userID = 0;
             // GET: id van ingelogde gebruiker

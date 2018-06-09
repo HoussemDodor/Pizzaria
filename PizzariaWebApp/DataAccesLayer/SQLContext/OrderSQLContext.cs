@@ -34,27 +34,7 @@ namespace DataAccesLayer
             throw new NotImplementedException();
         }
 
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string comment)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string deliveryAdress, string houseNumber, string city)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string deliveryAdress, string houseNumber, string houseNumberAddition, string city)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string deliveryAdress, string houseNumber, string houseNumberAddition, string city, string comment)
+        public bool NewOrder(Order order)
         {
             throw new NotImplementedException();
         }

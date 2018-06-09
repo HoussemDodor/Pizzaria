@@ -5,37 +5,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>StandardPizzaList</h2>
+<h2>Standaard pizza's</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Naam
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.price)
+            Prijs
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model)
-{
-    if (item.standardPizza == true)
+    @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-primary" })
-            </td>
-        </tr>
+        if (item.StandardPizza == true)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Price
+                </td>
+            </tr>           
+        }
     }
-}
-
 </table>

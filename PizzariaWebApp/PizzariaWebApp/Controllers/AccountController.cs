@@ -393,6 +393,12 @@ namespace PizzariaWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            if (Request.Cookies["UserCookie"] != null)
+            {
+                var c = new HttpCookie("UserCookie");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             FormsAuthentication.SignOut();
             Request.Cookies.Clear();

@@ -81,13 +81,13 @@ namespace DataAccesLayer
             return new Side()
             {
                 ID = Convert.ToInt32(reader["ID"]),
-                name = Convert.ToString(reader["Name"]),
-                price = Convert.ToDecimal(reader["Price"]),
-                buyInPrice = Convert.ToDecimal(reader["BuyInPrice"]),
-                halal = Convert.ToBoolean(reader["Halal"]),
-                vegan = Convert.ToBoolean(reader["Vegan"]),
-                alcohol = Convert.ToBoolean(reader["Alcohol"]),
-                categoryID = Convert.ToInt32(reader["CategoryID"])
+                SideName = Convert.ToString(reader["Name"]),
+                SidePrice = Convert.ToDecimal(reader["Price"]),
+                BuyInPrice = Convert.ToDecimal(reader["BuyInPrice"]),
+                Halal = Convert.ToBoolean(reader["Halal"]),
+                Vegan = Convert.ToBoolean(reader["Vegan"]),
+                Alcohol = Convert.ToBoolean(reader["Alcohol"]),
+                CategoryID = Convert.ToInt32(reader["CategoryID"])
             };
         }
     }

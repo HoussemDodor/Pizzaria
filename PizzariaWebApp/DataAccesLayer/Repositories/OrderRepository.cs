@@ -41,29 +41,9 @@ namespace DataAccesLayer
             return context.GetOrderByID(orderID);
         }
 
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered)
+        public bool NewOrder(Order order)
         {
-            return context.NewOrder(customerID, orderPlaced, takeAway, delivered);
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string comment)
-        {
-            return context.NewOrder(customerID, orderPlaced, takeAway, delivered, comment);
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string deliveryAdress, string houseNumber, string city)
-        {
-            return context.NewOrder(customerID, orderPlaced, takeAway, delivered, deliveryAdress, houseNumber, city);
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string deliveryAdress, string houseNumber, string houseNumberAddition, string city)
-        {
-            return context.NewOrder(customerID, orderPlaced, takeAway, delivered, deliveryAdress, houseNumber, houseNumberAddition, city);
-        }
-
-        public bool NewOrder(int customerID, DateTime orderPlaced, bool takeAway, bool delivered, string deliveryAdress, string houseNumber, string houseNumberAddition, string city, string comment)
-        {
-            return context.NewOrder(customerID, orderPlaced, takeAway, delivered, deliveryAdress, houseNumber, houseNumberAddition, city, comment);
+            return context.NewOrder(order);
         }
     }
 }

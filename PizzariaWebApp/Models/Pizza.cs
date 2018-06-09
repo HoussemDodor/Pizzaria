@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -12,32 +8,32 @@ namespace Models
         [ScaffoldColumn(false)]
         public int ID { get; set; }
         [ScaffoldColumn(false)]
-        public int doughID { get; set; }
+        public int DoughID { get; set; }
         [ScaffoldColumn(false)]
-        public int shapeID { get; set; }
+        public int ShapeID { get; set; }
         [Display(Name = "Lengte")]
-        public int length { get; set; }
+        public int Length { get; set; }
         [Display(Name = "Breedte")]
-        public int width { get; set; }
+        public int Width { get; set; }
         [Display(Name = "Lengte van 3de zijde")]
-        public int sideLength { get; set; }
+        public int SideLength { get; set; }
         [ScaffoldColumn(false)]
-        public bool standardPizza { get; set; }
+        public bool StandardPizza { get; set; }
         [Display(Name = "Topping")]
-        List<Topping> toppingsList { get; set; }
+        public List<Topping> ToppingsList { get; set; }
         [Display(Name = "Vorm")]
-        Shape shape { get; set; }
+        public Shape Shape { get; set; }
         [Display(Name = "Deeg")]
-        DoughType doughType { get; set; }
+        public DoughType DoughType { get; set; }
 
         public int GetSize(int length, int width, int sideLength)
         {
-            if (shapeID == 1)
+            if (ShapeID == 1)
             {
                 Circle c = new Circle();
                 return c.GetSize(length, width, sideLength);
             }
-            else if (shapeID == 2)
+            else if (ShapeID == 2)
             {
                 Rectangle r = new Rectangle();
                 return r.GetSize(length, width, sideLength);
@@ -49,22 +45,22 @@ namespace Models
             }
         }
 
-        public decimal GetPrice()
+        public override decimal GetPrice()
         {
             decimal price= 0;
-            decimal area = (decimal)GetSize(length, width, sideLength);
+            decimal area = (decimal)GetSize(Length, Width, SideLength);
 
             // bereken de prijs voor alle toppings
-            foreach (Topping topping in toppingsList)
+            foreach (Topping topping in ToppingsList)
             {
                 price += topping.price * area;
             }
 
             // prijs berekenen voor de Dough
-            price += area * doughType.price;
+            price += area * DoughType.price;
 
             // als het een standaard pizza is geld er een 25% korting
-            if (standardPizza)
+            if (StandardPizza)
             {
                 price = price * (decimal)0.75;
             }
@@ -76,11 +72,11 @@ namespace Models
         {
             string topping = "";
 
-            foreach(var x in toppingsList)
+            foreach(var x in ToppingsList)
             { 
                 topping += $" {x.name}";
             }
-            return $"{shape.name} {doughType.name} {topping}";
+            return $"{Shape.name} {DoughType.name} {topping}";
         }
     }
 }
