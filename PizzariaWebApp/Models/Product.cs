@@ -31,6 +31,6 @@ namespace Models
             }
         }
 
-        public abstract decimal GetPrice();
+        internal abstract decimal GetPrice();
     }
 }

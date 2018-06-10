@@ -18,7 +18,7 @@ namespace Models
         public int CategoryID { get; set; }
         public Category Category { get; set; }
 
-        public override decimal GetPrice()
+        internal override decimal GetPrice()
         {
             return SidePrice;
         }

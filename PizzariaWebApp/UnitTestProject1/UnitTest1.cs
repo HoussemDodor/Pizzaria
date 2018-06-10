@@ -56,9 +56,20 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestPizzaPriceCalculations()
         {
-            Assert.AreEqual((decimal)10.13, pizzalogic.GetPizzaByID(1).GetPrice());
+            Assert.AreEqual((decimal)10.13, pizzalogic.GetPizzaByID(1).Price);
 
-            Assert.AreEqual((decimal)18.53, pizzalogic.GetPizzaByID(5).GetPrice());
+            Assert.AreEqual((decimal)18.53, pizzalogic.GetPizzaByID(5).Price);
+        }
+
+        [TestMethod]
+        public void TestPriceDiscountIfStandardPizza()
+        {
+            Pizza pizzaOne = pizzalogic.GetPizzaByID(1);
+            Pizza pizzaTwo = pizzalogic.GetPizzaByID(1);
+
+            pizzaTwo.StandardPizza = false;
+
+            Assert.AreNotEqual(pizzaOne.Price, pizzaTwo.Price);
         }
     }
 }

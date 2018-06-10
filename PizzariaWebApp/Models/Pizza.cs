@@ -45,7 +45,7 @@ namespace Models
             }
         }
 
-        public override decimal GetPrice()
+        internal override decimal GetPrice()
         {
             decimal price = 0;
             decimal area = (decimal)GetSize();
