@@ -9,11 +9,9 @@ namespace DataAccesLayer
 {
     internal interface IOrder
     {
-        bool NewOrder(Order c);
+        bool NewOrder(Order order);
         List<Order> GetAllOrders();
         Order GetOrderByID(int orderID);
         List<Order> GetOrderByCustomerID(int customerID);
-        List<Pizza> GetAllPizzaByOrder(int orderID);
-        List<Side> GetAllSidesByOrder(int orderID);    
     }
 }

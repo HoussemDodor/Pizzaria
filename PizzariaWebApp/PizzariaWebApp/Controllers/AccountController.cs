@@ -91,7 +91,7 @@ namespace PizzariaWebApp.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
+                ModelState.AddModelError("", "Uw email/wachtwoord klopt niet.");
                 return View(model);
             }
         }

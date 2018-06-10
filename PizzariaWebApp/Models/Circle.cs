@@ -10,8 +10,11 @@ namespace Models
     {
         public override int GetSize(int length, int width, int sideLength)
         {
-            int area = Convert.ToInt32(Math.PI * Math.Pow(Convert.ToDouble(length), 2));
-            return area;
+            double area;
+            area = Math.Pow(length, 2) * Math.PI;
+            area = area / 4;
+            area = Math.Round(area);
+            return (int)area;
         }
         public override string ToString()
         {

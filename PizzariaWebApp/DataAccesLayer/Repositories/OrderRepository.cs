@@ -16,34 +16,12 @@ namespace DataAccesLayer
             context = new OrderSQLContext();
         }
 
-        public List<Order> GetAllOrders()
-        {
-            return context.GetAllOrders();
-        }
+        public List<Order> GetAllOrders() => context.GetAllOrders();
 
-        public List<Pizza> GetAllPizzaByOrder(int orderID)
-        {
-            return context.GetAllPizzaByOrder(orderID);
-        }
+        public List<Order> GetOrderByCustomerID(int customerID) => context.GetOrderByCustomerID(customerID);
 
-        public List<Side> GetAllSidesByOrder(int orderID)
-        {
-            return context.GetAllSidesByOrder(orderID);
-        }
+        public Order GetOrderByID(int orderID) => GetOrderByID(orderID);
 
-        public List<Order> GetOrderByCustomerID(int customerID)
-        {
-            return context.GetOrderByCustomerID(customerID);
-        }
-
-        public Order GetOrderByID(int orderID)
-        {
-            return context.GetOrderByID(orderID);
-        }
-
-        public bool NewOrder(Order order)
-        {
-            return context.NewOrder(order);
-        }
+        public bool NewOrder(Order order) => context.NewOrder(order);
     }
 }

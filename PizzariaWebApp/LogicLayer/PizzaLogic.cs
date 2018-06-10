@@ -19,8 +19,5 @@ namespace LogicLayer
 
         public List<Pizza> GetAllPizzas() => repo.GetAllPizzas();
         public Pizza GetPizzaByID(int pizzaID) => repo.GetPizzaByID(pizzaID);
-        public List<Topping> GetToppingByPizza(int PizzaID) => repo.GetToppingByPizza(PizzaID);
-        public DoughType GetDoughType(int doughtTypeID) => repo.GetDoughType(doughtTypeID);
-        public Shape GetShape(int shapeID) => repo.GetShape(shapeID);
     }
 }

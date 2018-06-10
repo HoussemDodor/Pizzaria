@@ -16,29 +16,8 @@ namespace DataAccesLayer
             context = new PizzaSQLContext();
         }
 
-        public List<Pizza> GetAllPizzas()
-        {
-            return context.GetAllPizzas();
-        }
+        public List<Pizza> GetAllPizzas() => context.GetAllPizzas();
 
-        public DoughType GetDoughType(int doughtTypeID)
-        {
-            return context.GetDoughType(doughtTypeID);
-        }
-
-        public Pizza GetPizzaByID(int pizzaID)
-        {
-            return context.GetPizzaByID(pizzaID);
-        }
-
-        public Shape GetShape(int shapeID)
-        {
-            return context.GetShape(shapeID);
-        }
-
-        public List<Topping> GetToppingByPizza(int PizzaID)
-        {
-            return GetToppingByPizza(PizzaID);
-        }
+        public Pizza GetPizzaByID(int pizzaID) => context.GetPizzaByID(pizzaID);
     }
 }

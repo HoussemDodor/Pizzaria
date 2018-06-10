@@ -26,29 +26,29 @@ namespace Models
         [Display(Name = "Deeg")]
         public DoughType DoughType { get; set; }
 
-        public int GetSize(int length, int width, int sideLength)
+        public int GetSize()
         {
             if (ShapeID == 1)
             {
                 Circle c = new Circle();
-                return c.GetSize(length, width, sideLength);
+                return c.GetSize(Length, Width, SideLength);
             }
             else if (ShapeID == 2)
             {
                 Rectangle r = new Rectangle();
-                return r.GetSize(length, width, sideLength);
+                return r.GetSize(Length, Width, SideLength);
             }
             else
             {
                 Triangle t = new Triangle();
-                return t.GetSize(length, width, sideLength);
+                return t.GetSize(Length, Width, SideLength);
             }
         }
 
         public override decimal GetPrice()
         {
             decimal price= 0;
-            decimal area = (decimal)GetSize(Length, Width, SideLength);
+            decimal area = (decimal)GetSize();
 
             // bereken de prijs voor alle toppings
             foreach (Topping topping in ToppingsList)

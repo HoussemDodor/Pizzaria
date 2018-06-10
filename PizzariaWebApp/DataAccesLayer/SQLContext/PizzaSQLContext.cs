@@ -34,15 +34,9 @@ namespace DataAccesLayer
             }
         }
 
-        public DoughType GetDoughType(int doughtTypeID)
-        {
-            DoughTypeSQLContext sql = new DoughTypeSQLContext();
-            return sql.GetDoughTypeByID(doughtTypeID);
-        }
-
         public Pizza GetPizzaByID(int pizzaID)
         {
-            string query = "SELECT * FROM Pizzaz WHERE ID = @id";
+            string query = "SELECT * FROM Pizza WHERE ID = @id";
             using (SqlConnection conn = dbconn.Connect)
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -61,16 +55,44 @@ namespace DataAccesLayer
             }
         }
 
-        public Shape GetShape(int shapeID)
+        public List<Product> GetPizzasByOrder(int orderID)
+        {
+            List<Product> products = new List<Product>();
+            using (SqlConnection conn = dbconn.Connect)
+            {
+                SqlCommand cmd = new SqlCommand("GetPizzasInOrder", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < Convert.ToInt32(reader["Quantity"]); i++)
+                        {
+                            products.Add(CreatePizzaFromReader(reader));
+                        }
+                    }
+                }
+                conn.Close();
+                return products;
+            }
+        }
+
+        private Shape GetShape(int shapeID)
         {
             ShapeSQLContext sql = new ShapeSQLContext();
             return sql.GetShapeByID(shapeID);
         }
 
-        public List<Topping> GetToppingByPizza(int PizzaID)
+        private List<Topping> GetToppingByPizza(int PizzaID)
         {
             ToppingSQLContext sql = new ToppingSQLContext();
             return sql.GetToppingsByPizza(PizzaID);
+        }
+        private DoughType GetDoughType(int doughtTypeID)
+        {
+            DoughTypeSQLContext sql = new DoughTypeSQLContext();
+            return sql.GetDoughTypeByID(doughtTypeID);
         }
 
         private Pizza CreatePizzaFromReader(SqlDataReader reader)

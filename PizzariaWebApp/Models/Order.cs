@@ -9,7 +9,7 @@ namespace Models
     public class Order
     {
         public int ID { get; set; }
-        public int accountID { get; set; }
+        public int CustomerID { get; set; }
         public string deliveryAdress { get; set; }
         public string houseNumber { get; set; }
         public string houseNumberAddition { get; set; }
@@ -18,7 +18,7 @@ namespace Models
         public string customerComment { get; set; }
         public bool takeAway { get; set; }
         public bool delivered { get; set; }
-        List<Product> productsInThisOrder { get; set; }
+        public List<Product> productsInThisOrder { get; set; }
 
         public override string ToString()
         {

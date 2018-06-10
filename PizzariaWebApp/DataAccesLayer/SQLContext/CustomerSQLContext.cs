@@ -12,12 +12,11 @@ namespace DataAccesLayer
     {
         private DatabaseConnection dbconn = new DatabaseConnection();
         private Customer customer;
-        private List<Customer> customerList = new List<Customer>();
 
 
         public List<Customer> GetAllCustomers()
         {
-            customerList.Clear();
+            List<Customer> customerList = new List<Customer>();
             string query = "SELECT * FROM Customer";
             using (SqlConnection conn = dbconn.Connect)
             {
@@ -135,6 +134,12 @@ namespace DataAccesLayer
             return emailTaken;
         }
 
+        private List<Order> OrdersByCustomer(int customerID)
+        {
+            OrderSQLContext sql = new OrderSQLContext();
+            return sql.GetOrderByCustomerID(customerID);
+        }
+
         private Customer CreateCustomerFromReader(SqlDataReader reader)
         {
             return new Customer()
@@ -144,7 +149,8 @@ namespace DataAccesLayer
                 password = Convert.ToString(reader["Password"]),
                 name = Convert.ToString(reader["Name"]),
                 surName = Convert.ToString(reader["Surname"]),
-                admin = Convert.ToBoolean(reader["Admin"])
+                admin = Convert.ToBoolean(reader["Admin"]),
+                OrdersByCustomer = OrdersByCustomer(Convert.ToInt32(reader["ID"]))
             };
         }
     }

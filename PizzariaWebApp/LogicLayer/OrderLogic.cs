@@ -19,13 +19,10 @@ namespace LogicLayer
 
         public List<Order> GetAllOrders() => repo.GetAllOrders();
 
-        public List<Pizza> GetAllPizzaByOrder(int orderID) => repo.GetAllPizzaByOrder(orderID);
-
-        public List<Side> GetAllSidesByOrder(int orderID) => repo.GetAllSidesByOrder(orderID);
-
         public List<Order> GetOrderByCustomerID(int customerID) => repo.GetOrderByCustomerID(customerID);
 
         public Order GetOrderByID(int orderID) => repo.GetOrderByID(orderID);
+
         bool NewOrder(Order order) => repo.NewOrder(order);
     }
 }

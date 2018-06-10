@@ -11,8 +11,6 @@ namespace DataAccesLayer
     {
         List<Pizza> GetAllPizzas();
         Pizza GetPizzaByID(int pizzaID);
-        List<Topping> GetToppingByPizza(int PizzaID);
-        DoughType GetDoughType(int doughtTypeID);
-        Shape GetShape(int shapeID);
+        List<Product> GetPizzasByOrder(int orderID);
     }
 }

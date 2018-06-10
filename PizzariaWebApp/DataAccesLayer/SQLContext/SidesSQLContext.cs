@@ -76,6 +76,29 @@ namespace DataAccesLayer
             }
         }
 
+        public List<Product> GetSideByOrder(int orderID)
+        {
+            List<Product> products = new List<Product>();
+            using (SqlConnection conn = dbconn.Connect)
+            {
+                SqlCommand cmd = new SqlCommand("GetSidesInOrder", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < Convert.ToInt32(reader["Quantity"]); i++)
+                        {
+                            products.Add(CreateSideFromReader(reader));
+                        }
+                    }
+                }
+                conn.Close();
+                return products;
+            }
+        }
+
         private Side CreateSideFromReader(SqlDataReader reader)
         {
             return new Side()
