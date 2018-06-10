@@ -47,7 +47,7 @@ namespace Models
 
         public override decimal GetPrice()
         {
-            decimal price= 0;
+            decimal price = 0;
             decimal area = (decimal)GetSize();
 
             // bereken de prijs voor alle toppings
@@ -65,7 +65,9 @@ namespace Models
                 price = price * (decimal)0.75;
             }
 
-            return price;
+            price = price / 100;
+
+            return System.Math.Round(price, 2);
         }
 
         public override string ToString()

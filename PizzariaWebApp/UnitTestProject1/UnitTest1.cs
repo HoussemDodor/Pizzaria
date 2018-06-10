@@ -10,11 +10,10 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
+        PizzaLogic pizzalogic = new PizzaLogic();
         [TestMethod]
-        public void TestPizzaSize()
+        public void TestPizzaSizeCalculations()
         {
-            PizzaLogic pizzalogic = new PizzaLogic();
-
             Pizza p = new Pizza()
             {
                 ShapeID = 2,
@@ -43,9 +42,23 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void Test()
+        public void TestMaxAndMinSizes()
         {
-            
+            foreach (Pizza p in pizzalogic.GetAllPizzas())
+            {
+                if (p.GetSize() < 50 && p.GetSize() > 2500)
+                {
+                    Assert.Fail();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void TestPizzaPriceCalculations()
+        {
+            Assert.AreEqual((decimal)10.13, pizzalogic.GetPizzaByID(1).GetPrice());
+
+            Assert.AreEqual((decimal)18.53, pizzalogic.GetPizzaByID(5).GetPrice());
         }
     }
 }
