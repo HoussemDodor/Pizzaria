@@ -12,5 +12,6 @@ namespace DataAccesLayer
         List<Pizza> GetAllPizzas();
         Pizza GetPizzaByID(int pizzaID);
         List<Product> GetPizzasByOrder(int orderID);
+        void AddPizzaToOrder(int orderID, int pizzaID);
     }
 }

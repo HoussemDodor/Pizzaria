@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccesLayer
 {
-    public class DoughTypeRepository
+    public class DoughTypeRepository : IDoughType
     {
         private IDoughType context;
 

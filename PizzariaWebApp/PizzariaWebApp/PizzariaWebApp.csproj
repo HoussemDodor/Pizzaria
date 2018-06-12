@@ -287,7 +287,7 @@
     <Content Include="Views\Order\StandardPizzaList.cshtml" />
     <Content Include="Views\Order\SidesList.cshtml" />
     <Content Include="Views\Home\OrderListByCustomer.cshtml" />
-    <Content Include="Views\Order\OrderPlaced.cshtml" />
+    <Content Include="Views\Order\PlaceOrder.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
@@ -303,6 +303,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccesLayer\DataAccesLayer.csproj">
+      <Project>{6b68b3a2-0642-4585-8c45-c4a3d3755ef5}</Project>
+      <Name>DataAccesLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogicLayer\LogicLayer.csproj">
       <Project>{ccfef7fb-17ed-4515-8906-0a0ac4e74229}</Project>
       <Name>LogicLayer</Name>

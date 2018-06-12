@@ -1,4 +1,5 @@
-﻿
+﻿@model Models.Order
+
 @{
     ViewBag.Title = "Nieuwe Bestelling";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,23 +9,60 @@
 <h2>Nieuwe Bestelling</h2>
 <br /><br />
 
-<a href="/Order/NewPizza" class="btn btn-primary">
-    <i class="fa fa-plus fa-5x" style="margin-right: 5px;"></i>
-    <br />Nieuwe pizza
-</a>
-<a href="/Order/StandardPizzaList" class="btn btn-primary">
-    <i class="fa fa-code-fork fa-5x" style="margin-right: 5px;"></i>
-    <br />Standaard pizza's
-</a>
-<a href="/Order/SidesList" class="btn btn-primary">
-    <i class="fa fa-shopping-basket fa-5x" style="margin-right: 5px;"></i>
-    <br />Dranken & Salade's
-</a>
+<div class="row">
+    <div class="col-md-2">
+        <a href="/Order/NewPizza" class="btn btn-primary">
+            <i class="fa fa-plus fa-5x" style="margin-left: 5px;"></i>
+            <br />Nieuwe pizza
+        </a>
+        <a href="/Order/StandardPizzaList/@Model.ID" class="btn btn-primary">
+            <i class="fa fa-pie-chart fa-5x" style="margin-left: 5px;"></i>
+            <br />Standaard pizza's
+        </a>
+        <a href="/Order/SidesList/@Model.ID" class="btn btn-primary">
+            <i class="fa fa-shopping-basket fa-5x" style="margin-left: 5px;"></i>
+            <br />Dranken & Salade's
+        </a>
 
 
-<br /><br />
-<a href="/Order/OrderPlaced" class="btn btn-primary">
-    <i class="fa fa-check fa-5x" style="margin-right: 5px;"></i>
-    <br />Bestelling plaatsen
-</a>
+        <br /><br />
+        <a href="/Order/PlaceOrder" class="btn btn-primary">
+            <i class="fa fa-check fa-5x" style="margin-left: 5px;"></i>
+            <br />Bestelling plaatsen
+        </a>
+    </div>
+    <div class="col-md-6">
+        <h3>huidige producten</h3>
+        <table class="table">
+            <tr>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Prijs
+                </th>
+            </tr>
+            @foreach (var item in Model.productsInThisOrder)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        €@item.Price
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <strong>Totaal Prijs</strong>
+                </td>
+                <td>
+                    <strong>€@Model.TotalPrice</strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 <br /><br />

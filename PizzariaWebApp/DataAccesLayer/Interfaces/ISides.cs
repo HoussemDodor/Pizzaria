@@ -13,5 +13,6 @@ namespace DataAccesLayer
         Side GetSideByID(int sideID);
         List<Side> GetSideByCategory(int categoryID);
         List<Product> GetSideByOrder(int orderID);
+        void AddSideToOrder(int orderID, int sideID);
     }
 }

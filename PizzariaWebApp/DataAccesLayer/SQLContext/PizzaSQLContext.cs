@@ -78,6 +78,21 @@ namespace DataAccesLayer
             }
         }
 
+        public void AddPizzaToOrder(int orderID, int pizzaID)
+        {
+            string query = "INSERT INTO PizzaOrder(PizzaID, OrderID) VALUES (@pizzaID, @orderID)";
+            using (SqlConnection conn = dbconn.Connect)
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@pizzaID", pizzaID);
+                    cmd.Parameters.AddWithValue("@orderID", orderID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         private Shape GetShape(int shapeID)
         {
             ShapeSQLContext sql = new ShapeSQLContext();

@@ -67,18 +67,26 @@ namespace PizzariaWebApp.Controllers
 
         private Customer GetCustomer()
         {
-            int userID = 0;
-            // GET: id van ingelogde gebruiker
-            string a = Request.Cookies["UserCookie"].Values["User_ID"];
+            try
+            {
+                int userID = 0;
+                // GET: id van ingelogde gebruiker
+                string a = Request.Cookies["UserCookie"].Values["User_ID"];
 
-            // Convert de id van een string naar een int.
-            try { userID = Convert.ToInt32(a); }
-            catch { userID = 0; }
+                // Convert de id van een string naar een int.
+                try { userID = Convert.ToInt32(a); }
+                catch { userID = 0; }
 
-            //haal de customer op uit de database
-            Customer x = customerlogic.GetCustomerByID(userID);
+                //haal de customer op uit de database
+                Customer x = customerlogic.GetCustomerByID(userID);
 
-            return x;
+                return x;
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
     }
 }

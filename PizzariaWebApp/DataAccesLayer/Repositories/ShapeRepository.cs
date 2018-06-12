@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccesLayer
 {
-    public class ShapeRepository
+    public class ShapeRepository : IShape
     {
         private IShape context;
 

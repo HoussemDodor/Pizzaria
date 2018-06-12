@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccesLayer
 {
-    public class ToppingRepository
+    public class ToppingRepository : ITopping
     {
         private ITopping context;
 
@@ -16,14 +16,10 @@ namespace DataAccesLayer
             context = new ToppingSQLContext();
         }
 
-        public List<Topping> GetAllToppings()
-        {
-            return context.GetAllToppings();
-        }
+        public List<Topping> GetAllToppings() => context.GetAllToppings();
 
-        public Topping GetToppingByID(int toppingID)
-        {
-            return context.GetToppingByID(toppingID);
-        }
+        public Topping GetToppingByID(int toppingID) => context.GetToppingByID(toppingID);
+
+        public List<Topping> GetToppingsByPizza(int pizzaID) => context.GetToppingsByPizza(pizzaID);
     }
 }

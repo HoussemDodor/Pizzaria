@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccesLayer
 {
-    public class SidesRepository
+    public class SidesRepository : ISides
     {
         private ISides context;
 
@@ -16,19 +16,14 @@ namespace DataAccesLayer
             context = new SidesSQLContext();
         }
 
-        public List<Side> GetAllSides()
-        {
-            return context.GetAllSides();
-        }
+        public void AddSideToOrder(int orderID, int sideID) => context.AddSideToOrder(orderID, sideID);
 
-        public List<Side> GetSideByCategory(int categoryID)
-        {
-            return context.GetSideByCategory(categoryID);
-        }
+        public List<Side> GetAllSides() => context.GetAllSides();
 
-        public Side GetSideByID(int sideID)
-        {
-            return context.GetSideByID(sideID);
-        }
+        public List<Side> GetSideByCategory(int categoryID) => context.GetSideByCategory(categoryID);
+
+        public Side GetSideByID(int sideID) => context.GetSideByID(sideID);
+
+        public List<Product> GetSideByOrder(int orderID) => GetSideByOrder(orderID);
     }
 }

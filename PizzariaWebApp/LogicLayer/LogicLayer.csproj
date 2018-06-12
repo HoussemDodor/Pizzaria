@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="CustomerLogic.cs" />
     <Compile Include="OrderLogic.cs" />
-    <Compile Include="PizzaLogic.cs" />
+    <Compile Include="ProductLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

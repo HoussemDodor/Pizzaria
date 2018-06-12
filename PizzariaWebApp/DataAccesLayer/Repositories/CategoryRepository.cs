@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccesLayer
 {
-    public class CategoryRepository
+    public class CategoryRepository : ICategory
     {
         private ICategory context;
 

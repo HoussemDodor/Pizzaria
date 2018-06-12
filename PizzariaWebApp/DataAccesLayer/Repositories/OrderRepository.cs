@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccesLayer
 {
-    public class OrderRepository
+    public class OrderRepository : IOrder
     {
         private IOrder context;
 

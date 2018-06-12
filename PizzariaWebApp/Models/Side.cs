@@ -20,7 +20,7 @@ namespace Models
 
         internal override decimal GetPrice()
         {
-            return SidePrice;
+            return SidePrice / 100;
         }
 
         public override string ToString()

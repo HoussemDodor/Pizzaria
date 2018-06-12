@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccesLayer
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomer
     {
         private ICustomer context;
 

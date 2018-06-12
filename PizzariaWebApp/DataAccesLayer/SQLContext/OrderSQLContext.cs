@@ -79,7 +79,55 @@ namespace DataAccesLayer
 
         public bool NewOrder(Order order)
         {
-            throw new NotImplementedException();
+            string InsertOrderQuery =  @"INSERT INTO [Order](CustomerID, DeliveryAdress, HouseNumber, HouseNumberAddition, City, DateOrderPlaced, Comment, TakeAway, Delivered)
+                                        VALUES (@customerID, @deliveryAdress, @houseNumber, @houseNumberAddition, @city, @dateOrderPlaced, @comment, @takeAway, @delivered)";
+            string AddPizzaToOrderQuery = @"INSERT INTO PizzaOrder(PizzaID, OrderId) VALUES (@pizzaID, @orderID)";
+            string AddSideToOrderQuery = @"INSERT INTO OrderSide(SideID, OrderId) VALUES(@sideID, @orderID)";
+            try
+            {
+                using (SqlConnection conn = dbconn.Connect)
+                {
+                    using (SqlCommand cmd = new SqlCommand(InsertOrderQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@customerID", order.CustomerID);
+                        cmd.Parameters.AddWithValue("@deliveryAdress", order.deliveryAdress);
+                        cmd.Parameters.AddWithValue("@houseNumber", order.houseNumber);
+                        cmd.Parameters.AddWithValue("@houseNumberAddition", order.houseNumberAddition);
+                        cmd.Parameters.AddWithValue("@city", order.city);
+                        cmd.Parameters.AddWithValue("@dateOrderPlaced", order.dateOrderPlaced);
+                        cmd.Parameters.AddWithValue("@comment", order.customerComment);
+                        cmd.Parameters.AddWithValue("@takeAway", order.takeAway);
+                        cmd.Parameters.AddWithValue("@delivered", order.Delivered);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    using (SqlCommand cmd = new SqlCommand(AddPizzaToOrderQuery, conn))
+                    {
+                        foreach (Pizza pizza in order.productsInThisOrder)
+                        {
+                            cmd.Parameters.AddWithValue("@pizzaID", pizza.ID);
+                            cmd.Parameters.AddWithValue("@orderID", order.ID);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    using (SqlCommand cmd = new SqlCommand(AddSideToOrderQuery, conn))
+                    {
+                        foreach (Side side in order.productsInThisOrder)
+                        {
+                            cmd.Parameters.AddWithValue("@sideID", side.ID);
+                            cmd.Parameters.AddWithValue("@orderID", order.ID);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+                throw;
+            }
+
+            return true;
         }
 
         private List<Product> GetProductsInThisOrder(int orderID)
@@ -99,6 +147,11 @@ namespace DataAccesLayer
             return products;
         }
 
+        private Customer GetCustomer(int customerID) // => new CustomerRepository().GetCustomerByID(customerID);
+        {
+            return new CustomerRepository().GetCustomerByID(customerID);
+        }
+
         private Order CreateOrderFromReader(SqlDataReader reader)
         {
             if (Convert.ToString(reader["HouseNumberAddition"]) == null && Convert.ToString(reader["CustomerComment"]) == null)
@@ -112,8 +165,9 @@ namespace DataAccesLayer
                     city = Convert.ToString(reader["City"]),
                     dateOrderPlaced = Convert.ToDateTime(reader["DateOrderPlaced"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
-                    delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
+                    Delivered = Convert.ToBoolean(reader["Delivered"]),
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
+                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
                 };
             }
             else if (Convert.ToString(reader["HouseNumberAddition"]) == null && Convert.ToString(reader["Comment"]) != null)
@@ -128,8 +182,9 @@ namespace DataAccesLayer
                     dateOrderPlaced = Convert.ToDateTime(reader["DateOrderPlaced"]),
                     customerComment = Convert.ToString(reader["Comment"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
-                    delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
+                    Delivered = Convert.ToBoolean(reader["Delivered"]),
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
+                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
                 };
             }
             else if (Convert.ToString(reader["HouseNumberAddition"]) != null && Convert.ToString(reader["Comment"]) == null)
@@ -144,8 +199,9 @@ namespace DataAccesLayer
                     city = Convert.ToString(reader["City"]),
                     dateOrderPlaced = Convert.ToDateTime(reader["DateOrderPlaced"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
-                    delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
+                    Delivered = Convert.ToBoolean(reader["Delivered"]),
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
+                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
                 };
             }
             else
@@ -161,8 +217,9 @@ namespace DataAccesLayer
                     dateOrderPlaced = Convert.ToDateTime(reader["DateOrderPlaced"]),
                     customerComment = Convert.ToString(reader["Comment"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
-                    delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
+                    Delivered = Convert.ToBoolean(reader["Delivered"]),
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
+                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
                 };
             }
         }

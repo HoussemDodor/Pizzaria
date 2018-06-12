@@ -10,52 +10,47 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.price)
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.vegan)
+            @Html.DisplayNameFor(model => model.Vegan)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.halal)
+            @Html.DisplayNameFor(model => model.Halal)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.alcohol)
+            @Html.DisplayNameFor(model => model.Alcohol)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.categoryID)
+            Categorie
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vegan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.halal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.alcohol)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.categoryID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn btn-primary" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vegan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Halal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alcohol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.name)
+            </td>
+        </tr>
+    }
 
 </table>

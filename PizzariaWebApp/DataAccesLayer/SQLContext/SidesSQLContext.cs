@@ -99,6 +99,27 @@ namespace DataAccesLayer
             }
         }
 
+        public void AddSideToOrder(int orderID, int sideID)
+        {
+            string query = "INSERT INTO OrderSide(SideID, OrderID) VALUES (@sideID, @orderID)";
+            using (SqlConnection conn = dbconn.Connect)
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sideID", sideID);
+                    cmd.Parameters.AddWithValue("@orderID", orderID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private Category GetCategory(int categoryID)
+        {
+            CategorySQLContext sql = new CategorySQLContext();
+            return sql.GetCategoryByID(categoryID);
+        }
+
         private Side CreateSideFromReader(SqlDataReader reader)
         {
             return new Side()
@@ -110,7 +131,8 @@ namespace DataAccesLayer
                 Halal = Convert.ToBoolean(reader["Halal"]),
                 Vegan = Convert.ToBoolean(reader["Vegan"]),
                 Alcohol = Convert.ToBoolean(reader["Alcohol"]),
-                CategoryID = Convert.ToInt32(reader["CategoryID"])
+                CategoryID = Convert.ToInt32(reader["CategoryID"]),
+                Category = GetCategory(Convert.ToInt32(reader["CategoryID"]))                
             };
         }
     }
