@@ -15,19 +15,12 @@ namespace PizzariaWebApp.Controllers
         OrderLogic orderLogic = new OrderLogic();
 
         public ActionResult Index(int? id)
-        {
-            if (id != null)
+        {            
+            if (ViewBag.Order == null)
             {
-                return View(orderLogic.GetOrderByID((int)id));
+                ViewBag.Order = new Order() { CustomerID = GetCurrentCustomer().ID, Customer = GetCurrentCustomer() };
             }
-            else
-            {
-                Order order = new Order()
-                {
-                    CustomerID = GetCustomer().ID
-                };
-                return View(order);
-            }       
+            return View(ViewBag.Order);
         }
 
         public ActionResult NewPizza()
@@ -35,17 +28,16 @@ namespace PizzariaWebApp.Controllers
             return View();
         }
 
-        public ActionResult StandardPizzaList(int? id)
+        public ActionResult StandardPizzaList()
         {
-            ViewBag.OrderID = id;
             return View(productlogic.GetAllPizzas());
         }
 
         [HttpPost]
-        public ActionResult StandardPizzaList(Pizza pizza)
+        public ActionResult StandardPizzaList(int pizzaID)
         {
-            productlogic.AddPizzaToOrder(ViewBag.OrderID, pizza.ID);
-            RedirectToAction("Index", new { id = ViewBag.OrderID });
+            productlogic.AddPizzaToOrder(ViewBag.Order.ID, pizzaID);
+            return RedirectToAction("Index", new { id = ViewBag.OrderID });
         }
 
         public ActionResult SidesList()
@@ -58,7 +50,7 @@ namespace PizzariaWebApp.Controllers
             return View();
         }
 
-        private Customer GetCustomer()
+        private Customer GetCurrentCustomer()
         {
             try
             {

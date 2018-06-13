@@ -25,6 +25,8 @@ namespace LogicLayer
 
         public List<Side> GetSideByCategory(int categoryID) => sideRepo.GetSideByCategory(categoryID);
 
+        public void AddPizzaToOrder(int orderID, int pizzaID) => pizzaRepo.AddPizzaToOrder(orderID, pizzaID);
+
         public List<Pizza> GetAllPizzas() => pizzaRepo.GetAllPizzas();
 
         public Pizza GetPizzaByID(int pizzaID) => pizzaRepo.GetPizzaByID(pizzaID);

@@ -80,7 +80,7 @@ namespace DataAccesLayer
 
         public void AddPizzaToOrder(int orderID, int pizzaID)
         {
-            string query = "INSERT INTO PizzaOrder(PizzaID, OrderID) VALUES (@pizzaID, @orderID)";
+            string query = "INSERT INTO PizzaOrder(PizzaID, OrderID, Quantity) VALUES (@pizzaID, @orderID, 1)";
             using (SqlConnection conn = dbconn.Connect)
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -90,6 +90,7 @@ namespace DataAccesLayer
 
                     cmd.ExecuteNonQuery();
                 }
+                conn.Close();
             }
         }
 

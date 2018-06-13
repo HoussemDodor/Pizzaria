@@ -61,7 +61,10 @@ namespace DataAccesLayer
             string query = "SELECT * FROM Customer WHERE Email = @email AND Password = @password;";
             using (SqlConnection conn = dbconn.Connect)
             {
-                conn.Open();
+                if (conn.State != System.Data.ConnectionState.Open)
+                {
+                    conn.Open();
+                }
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@email", email);

@@ -5,7 +5,7 @@ using Models;
 using DataAccesLayer;
 using LogicLayer;
 
-namespace UnitTests
+namespace Tests
 {
     [TestClass]
     public class UnitTest
@@ -58,7 +58,7 @@ namespace UnitTests
         {
             Assert.AreEqual((decimal)10.13, productLogic.GetPizzaByID(1).Price);
 
-            Assert.AreEqual((decimal)18.53, productLogic.GetPizzaByID(5).Price);
+            Assert.AreEqual((decimal)23.76, productLogic.GetPizzaByID(5).Price);
         }
 
         [TestMethod]
@@ -84,13 +84,13 @@ namespace UnitTests
             order.productsInThisOrder.Add(productLogic.GetPizzaByID(1));
 
             // vergelijk de totaal prijs met de echte prijs
-            Assert.AreEqual((decimal)28.66, order.TotalPrice);
+            Assert.AreEqual((decimal)33.89, order.TotalPrice);
 
             // Voeg nog een product toe 
             order.productsInThisOrder.Add(productLogic.GetSideByID(1));
 
             // Kijk of de totale prijs is toegenomen met het toegevoegde product
-            Assert.AreEqual((decimal)32.16, order.TotalPrice);
+            Assert.AreEqual((decimal)37.39, order.TotalPrice);
         }
     }
 }

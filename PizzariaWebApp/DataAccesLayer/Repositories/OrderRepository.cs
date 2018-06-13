@@ -20,7 +20,7 @@ namespace DataAccesLayer
 
         public List<Order> GetOrderByCustomerID(int customerID) => context.GetOrderByCustomerID(customerID);
 
-        public Order GetOrderByID(int orderID) => GetOrderByID(orderID);
+        public Order GetOrderByID(int orderID) => context.GetOrderByID(orderID);
 
         public bool NewOrder(Order order) => context.NewOrder(order);
     }

@@ -81,8 +81,6 @@ namespace DataAccesLayer
         {
             string InsertOrderQuery =  @"INSERT INTO [Order](CustomerID, DeliveryAdress, HouseNumber, HouseNumberAddition, City, DateOrderPlaced, Comment, TakeAway, Delivered)
                                         VALUES (@customerID, @deliveryAdress, @houseNumber, @houseNumberAddition, @city, @dateOrderPlaced, @comment, @takeAway, @delivered)";
-            string AddPizzaToOrderQuery = @"INSERT INTO PizzaOrder(PizzaID, OrderId) VALUES (@pizzaID, @orderID)";
-            string AddSideToOrderQuery = @"INSERT INTO OrderSide(SideID, OrderId) VALUES(@sideID, @orderID)";
             try
             {
                 using (SqlConnection conn = dbconn.Connect)
@@ -101,24 +99,7 @@ namespace DataAccesLayer
 
                         cmd.ExecuteNonQuery();
                     }
-                    using (SqlCommand cmd = new SqlCommand(AddPizzaToOrderQuery, conn))
-                    {
-                        foreach (Pizza pizza in order.productsInThisOrder)
-                        {
-                            cmd.Parameters.AddWithValue("@pizzaID", pizza.ID);
-                            cmd.Parameters.AddWithValue("@orderID", order.ID);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    using (SqlCommand cmd = new SqlCommand(AddSideToOrderQuery, conn))
-                    {
-                        foreach (Side side in order.productsInThisOrder)
-                        {
-                            cmd.Parameters.AddWithValue("@sideID", side.ID);
-                            cmd.Parameters.AddWithValue("@orderID", order.ID);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
+                    conn.Close();
                 }
             }
             catch
@@ -147,14 +128,9 @@ namespace DataAccesLayer
             return products;
         }
 
-        private Customer GetCustomer(int customerID) // => new CustomerRepository().GetCustomerByID(customerID);
-        {
-            return new CustomerRepository().GetCustomerByID(customerID);
-        }
-
         private Order CreateOrderFromReader(SqlDataReader reader)
         {
-            if (Convert.ToString(reader["HouseNumberAddition"]) == null && Convert.ToString(reader["CustomerComment"]) == null)
+            if (Convert.ToString(reader["HouseNumberAddition"]) == null && Convert.ToString(reader["Comment"]) == null)
             {
                 return new Order()
                 {
@@ -166,8 +142,7 @@ namespace DataAccesLayer
                     dateOrderPlaced = Convert.ToDateTime(reader["DateOrderPlaced"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
                     Delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
-                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
                 };
             }
             else if (Convert.ToString(reader["HouseNumberAddition"]) == null && Convert.ToString(reader["Comment"]) != null)
@@ -183,8 +158,7 @@ namespace DataAccesLayer
                     customerComment = Convert.ToString(reader["Comment"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
                     Delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
-                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
                 };
             }
             else if (Convert.ToString(reader["HouseNumberAddition"]) != null && Convert.ToString(reader["Comment"]) == null)
@@ -200,8 +174,7 @@ namespace DataAccesLayer
                     dateOrderPlaced = Convert.ToDateTime(reader["DateOrderPlaced"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
                     Delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
-                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
                 };
             }
             else
@@ -218,8 +191,7 @@ namespace DataAccesLayer
                     customerComment = Convert.ToString(reader["Comment"]),
                     takeAway = Convert.ToBoolean(reader["TakeAway"]),
                     Delivered = Convert.ToBoolean(reader["Delivered"]),
-                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"])),
-                    Customer = GetCustomer(Convert.ToInt32(reader["CustomerID"]))
+                    productsInThisOrder = GetProductsInThisOrder(Convert.ToInt32(reader["ID"]))
                 };
             }
         }

@@ -23,6 +23,6 @@ namespace LogicLayer
 
         public Order GetOrderByID(int orderID) => repo.GetOrderByID(orderID);
 
-        bool NewOrder(Order order) => repo.NewOrder(order);
+        public bool NewOrder(Order order) => repo.NewOrder(order);
     }
 }
